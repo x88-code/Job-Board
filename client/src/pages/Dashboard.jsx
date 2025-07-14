@@ -38,7 +38,7 @@ function Dashboard() {
     e.preventDefault();
     try {
     await axios.post(`${import.meta.env.VITE_API_URL}/api/jobs`, form, { withCredentials: true });
-      const res = await axios.get(`${API}/api/jobs`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/jobs`);
       setJobs(res.data.jobs || []);
       setForm({
         title: "",
