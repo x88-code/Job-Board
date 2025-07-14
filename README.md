@@ -127,12 +127,12 @@ pnpm run dev
 
 ### Frontend (Vercel)
 
-- Live URL: [https://jobboard-client.vercel.app](https://jobboard-client.vercel.app)
+- Live URL: [https://jobboard-client.vercel.app](https://job-board-dun-six.vercel.app/)
 - Set environment variable: `VITE_API_BASE_URL=https://jobboard-api.onrender.com/api`
 
 ### Backend (Render)
 
-- Live URL: [https://jobboard-api.onrender.com](https://jobboard-api.onrender.com)
+- Live URL: [https://jobboard-api.onrender.com](https://job-board-mcsj.onrender.com)
 - Set the environment variables as shown above
 
 ---
