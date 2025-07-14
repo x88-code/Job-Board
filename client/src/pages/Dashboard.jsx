@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API = import.meta.env.VITE_API_URL;
+
 function Dashboard() {
   const [jobs, setJobs] = useState([]);
   const [form, setForm] = useState({
@@ -14,11 +16,10 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch jobs on mount
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get("/api/jobs");
+       await axios.get(`${import.meta.env.VITE_API_URL}/api/jobs`); 
         setJobs(res.data.jobs || []);
       } catch (err) {
         setError("Failed to load jobs.");
@@ -30,17 +31,14 @@ function Dashboard() {
     fetchJobs();
   }, []);
 
-  // Handle input changes
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  // Submit job form
   const handlePost = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/jobs", form, { withCredentials: true });
-      // Refresh job list after post
-      const res = await axios.get("/api/jobs");
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/jobs`, form, { withCredentials: true });
+      const res = await axios.get(`${API}/api/jobs`);
       setJobs(res.data.jobs || []);
       setForm({
         title: "",

@@ -1,7 +1,8 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+const API = import.meta.env.VITE_API_URL;
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/auth/login", { email, password }, { withCredentials: true });
+await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password }, { withCredentials: true });
       navigate("/dashboard");
     } catch (err) {
       alert("Login failed");

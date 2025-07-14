@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_API_URL;
+
 function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "", role: "jobseeker" });
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/auth/register", form);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, form);
       navigate("/login");
     } catch (err) {
       alert("Registration failed");
