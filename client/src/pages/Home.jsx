@@ -7,16 +7,17 @@ function Home() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const res = await axios.get("/api/jobs");
-        setJobs(res.data.jobs || []);
-      } catch (err) {
-        setError("Failed to load job listings.");
-      } finally {
-        setLoading(false);
-      }
-    };
+   const fetchJobs = async () => {
+  try {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/jobs`);
+    setJobs(res.data.jobs || []);
+  } catch (err) {
+    setError("Failed to load job listings.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
     fetchJobs();
   }, []);
