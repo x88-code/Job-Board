@@ -31,11 +31,22 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-// CORS configuration
+// Enhanced CORS configuration for production
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://job-board-dun-six.vercel.app'
+];
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (e.g., Postman or server-to-server)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
 }));
+
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
